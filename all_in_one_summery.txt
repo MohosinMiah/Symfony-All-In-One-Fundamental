@@ -24,6 +24,8 @@
 ................................................................
 </p>
 
+
+
 *************************************************************
 #Symfony Fundamental Basic To Advanced
 
@@ -35,6 +37,29 @@ Ex. bin/console make:controller DefaultController
 ................................................................
 </p>
 
-****************************************************
+
+
+
+
+
+
+*************************************************************
+
+#Symfony Fundamental Basic To Advanced
+
+<h1>  ..................  Topic : Views 01  .....................................  </h1>
+
+<p>
+Install twig we need to write 
+CMD : composer requir twig
+
+when we create controller at that time create also view foler
+
+
+................................................................
+</p>
+
+
+
 
 

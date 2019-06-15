@@ -3,10 +3,11 @@
 <h1>  ..................  Topic : Views 01  .....................................  </h1>
 
 <p>
-Install twig we need to write 
-CMD : composer requir twig
+First of all . We need to istall orm 
+CMD: composer require orm
+To create SQLite Database user 
+CMD:bin/console doctrine:database:create
 
-when we create controller at that time create also view foler
-
+This command will create a data.db is between var folder.
 
 </p>

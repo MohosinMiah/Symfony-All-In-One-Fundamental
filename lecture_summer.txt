@@ -1,25 +1,10 @@
 #Symfony Fundamental Basic To Advanced
 
-<h1>  ..................  Topic : Routes 01  .....................................  </h1>
+<h1>  ..................  Topic : Controller 01  .....................................  </h1>
 
-<p>For Routing we can use two methodology 
-
- 01.routes.yaml  in this file  configure routes
- 02.Annotation based routes in Controller configure routes
-
- Using maker package we can create controller , model and etc .
-
- Controller : bin/console make:controller [controller-name]
-
-            make:command            Creates a new console command class
-            make:controller         Creates a new controller class
-            make:entity             Creates a new Doctrine entity class
-
-            [...]
-
-            make:validator          Creates a new validator and constraint class
-            make:voter              Creates a new security voter class
-
+<p>
+CMD for creating Controller : bin/console make:controller [controller-name]
+Ex. bin/console make:controller DefaultController
 
 
 </p>

@@ -12,6 +12,16 @@
     <h1>✅😃 </h1>
    Page Number : {{page}}
 <ul>
-  
+  <h1>Display Error Message</h1>
+  {% for message in app.flashes('success') %}
+    <div class="flash-notice">
+        {{ message }}
+    </div>
+{% endfor %}
 </div>
+
+
 {% endblock %}
+
+
+

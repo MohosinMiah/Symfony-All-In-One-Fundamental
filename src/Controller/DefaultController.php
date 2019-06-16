@@ -24,6 +24,11 @@ class DefaultController extends AbstractController
  */
     public function blog($page)
     {
+         // Adding a warning type message
+         $this->addFlash("warning", "This is a warning message");
+// Adding a success type message
+$this->addFlash("success", "This is a success message");
+
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
             'page' =>$page
@@ -31,7 +36,7 @@ class DefaultController extends AbstractController
         ]);
     }
 
-    
+
 
 
 

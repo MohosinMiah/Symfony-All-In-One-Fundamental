@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
 use App\Services\MyFriends;
+use Symfony\Flex\Response;
 
 class DefaultController extends AbstractController
 {
@@ -17,6 +18,38 @@ class DefaultController extends AbstractController
         $myFriends->friends = ["Change_from_controller_one"];
      }
      
+
+ /**
+     * @Route("/blog/{page<\d+>?1}", name="blog")
+ */
+    public function blog($page)
+    {
+        return $this->render('default/index.html.twig', [
+            'controller_name' => 'DefaultController',
+            'page' =>$page
+            
+        ]);
+    }
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * @Route("/default", name="default")

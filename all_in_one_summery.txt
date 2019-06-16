@@ -70,19 +70,8 @@ when we create controller at that time create also view foler
 <h1>  ..................  Topic : Entities 01  .....................................  </h1>
 
 <p>
-First of all . We need to istall orm 
-CMD: composer require orm
-To create SQLite Database user 
-CMD:bin/console doctrine:database:create
-
-This command will create a data.db is between var folder.
-For creating Entity
-
-CMD:bin/console make:entity
-
-Then need to create migration 
-CMD : bin/console make:migration
-Then CMD : bin/console doctrine:migrations:migrate
+We use services to reuse any service .
+It create only one instace .
 
 
 

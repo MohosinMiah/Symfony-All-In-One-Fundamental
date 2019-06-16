@@ -17,6 +17,12 @@
     {% endfor %}
 </ul>
     This friendly message is coming from:
+    <h1>Friends List </h1>
+ {# Data from Services #}
+    {% for myFriend in myFriends %}
+    <p>Friend Name 😃: {{myFriend}} </p>
+
+    {% endfor%}
     <ul>
         <li>Your controller at <code><a href="{{ 'F:/xammp/htdocs/learnsymfony/src/Controller/DefaultController.php'|file_link(0) }}">src/Controller/DefaultController.php</a></code></li>
         <li>Your template at <code><a href="{{ 'F:/xammp/htdocs/learnsymfony/templates/default/index.html.twig'|file_link(0) }}">templates/default/index.html.twig</a></code></li>

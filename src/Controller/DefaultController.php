@@ -5,13 +5,22 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
+use App\Services\MyFriends;
 
 class DefaultController extends AbstractController
 {
+
+
+     public function __construct(MyFriends $myFriends)
+     {
+        $myFriends->friends = ["Change_from_controller_one"];
+     }
+     
+
     /**
      * @Route("/default", name="default")
      */
-    public function index()
+    public function index(MyFriends $myFriends)
     {
 
         $entityManager = $this->getDoctrine()->getManager();
@@ -51,6 +60,7 @@ class DefaultController extends AbstractController
             'controller_name' => 'DefaultController',
             'msg' =>"Send Data from controller to view ",
             'datas' =>$data,
+            'myFriends' => $myFriends->friends,
         ]);
     }
 }

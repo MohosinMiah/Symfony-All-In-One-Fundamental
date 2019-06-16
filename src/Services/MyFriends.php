@@ -1,15 +1,23 @@
 <?php   
 namespace App\Services;
 
-class MyFriends {
+use Psr\Log\LoggerInterface;
 
+class MyFriends {
   public $friends = ["Sajib","Forhad","Easin","Rayhan"];
 
-  public function __constructor(){
+  public function __constructor(LoggerInterface $logger){
         $this->friends;
+        $this->test($logger);
   }
 
+ public function test(LoggerInterface $logger)
+ {  
+   
+ 
+  $logger->info("I am From MyFriends Service");
 
+ }
 
 
 

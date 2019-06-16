@@ -67,11 +67,15 @@ when we create controller at that time create also view foler
 
 #Symfony Fundamental Basic To Advanced
 
-<h1>  ..................  Topic : Entities 01  .....................................  </h1>
+<h1>  ..................  Topic : Services 02  .....................................  </h1>
 
 <p>
-We use services to reuse any service .
-It create only one instace .
+In my service user thirdparty service or another service .
+To See all Available Service in Symfony 
+CMD : bin/console debug:container 
+
+I user : Looger in my aleady MyFriends service 
+CMD : composer require logger 
 
 
 

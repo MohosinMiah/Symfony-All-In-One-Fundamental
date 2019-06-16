@@ -13,6 +13,7 @@ class DefaultController extends AbstractController
 
      public function __construct(MyFriends $myFriends)
      {
+      
         $myFriends->friends = ["Change_from_controller_one"];
      }
      
@@ -22,32 +23,31 @@ class DefaultController extends AbstractController
      */
     public function index(MyFriends $myFriends)
     {
-
+        
         $entityManager = $this->getDoctrine()->getManager();
-        $user = new User;
+        // $user = new User;
 
-        $user->setName("Md.Mohosin Miah");
+        // $user->setName("Md.Mohosin Miah");
 
-        $user2 = new User;
+        // $user2 = new User;
 
 
-        $user2->setName("Md.Rayhan Miah");
-        $user3 = new User;
+        // $user2->setName("Md.Rayhan Miah");
+        // $user3 = new User;
 
-        $user3->setName("Md.Forhad Miah");
-           // tell Doctrine you want to (eventually) save the user (no queries yet)
-           $entityManager->persist($user);
-           // actually executes the queries (i.e. the INSERT query)
-           $entityManager->persist($user2);
-           // actually executes the queries (i.e. the INSERT query)
-           $entityManager->persist($user3);
+        // $user3->setName("Md.Forhad Miah");
+        //    // tell Doctrine you want to (eventually) save the user (no queries yet)
+        //    $entityManager->persist($user);
+        //    // actually executes the queries (i.e. the INSERT query)
+        //    $entityManager->persist($user2);
+        //    // actually executes the queries (i.e. the INSERT query)
+        //    $entityManager->persist($user3);
            
-           $entityManager->flush();
+        //    $entityManager->flush();
 
            $users = $this->getDoctrine()
            ->getRepository(User::class)
            ->findAll();
-           dump($users);
 
 
         $data =[

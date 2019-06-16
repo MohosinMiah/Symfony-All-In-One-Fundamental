@@ -10,6 +10,7 @@ use App\Services\MyFriends;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class DefaultController extends AbstractController
 {
@@ -25,31 +26,17 @@ class DefaultController extends AbstractController
  /**
      * @Route("/blog/{page<\d+>?1}", name="blog")
  */
-    public function blog($page)
+    public function blog($page,Session $session)
     {
-           
-        /**
-         * For store data in  Cookie  stert
-         */ 
-        // $response = new Response();
-        // // We don't know the user we send a cookie.
-        // $cookie = new Cookie('myCookie', 'value', time() + (365 * 24 * 60 * 60));  // Expires 1 years
-        // $response->headers->setCookie($cookie);
-        // $response->send();
-        /**
-         * End .Successfully set data in Cookie .Check using Cookie Inspecture Addon in Cromo or any other browser
-         */
-
-
-          /**
-         * For delete  data from  Cookie  stert
-         */ 
-        $response = new Response();
-        $response->headers->clearCookie('myCookie');
-          /**
-         * End
-         */ 
-
+           // Set session value 
+        $session->set('name','value');
+        //remove session value
+        $session->remove('name');
+  //check session value based on name
+        if($session->has('name')){
+            // get session value
+                dump($session->get('name'));
+        }
 
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',

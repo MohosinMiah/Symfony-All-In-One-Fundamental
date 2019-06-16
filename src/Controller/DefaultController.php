@@ -6,7 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
 use App\Services\MyFriends;
-use Symfony\Flex\Response;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Cookie;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends AbstractController
 {
@@ -24,10 +27,29 @@ class DefaultController extends AbstractController
  */
     public function blog($page)
     {
-         // Adding a warning type message
-         $this->addFlash("warning", "This is a warning message");
-// Adding a success type message
-$this->addFlash("success", "This is a success message");
+           
+        /**
+         * For store data in  Cookie  stert
+         */ 
+        // $response = new Response();
+        // // We don't know the user we send a cookie.
+        // $cookie = new Cookie('myCookie', 'value', time() + (365 * 24 * 60 * 60));  // Expires 1 years
+        // $response->headers->setCookie($cookie);
+        // $response->send();
+        /**
+         * End .Successfully set data in Cookie .Check using Cookie Inspecture Addon in Cromo or any other browser
+         */
+
+
+          /**
+         * For delete  data from  Cookie  stert
+         */ 
+        $response = new Response();
+        $response->headers->clearCookie('myCookie');
+          /**
+         * End
+         */ 
+
 
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\User;
 
 class DefaultController extends AbstractController
 {
@@ -12,6 +13,34 @@ class DefaultController extends AbstractController
      */
     public function index()
     {
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $user = new User;
+
+        $user->setName("Md.Mohosin Miah");
+
+        $user2 = new User;
+
+
+        $user2->setName("Md.Rayhan Miah");
+        $user3 = new User;
+
+        $user3->setName("Md.Forhad Miah");
+           // tell Doctrine you want to (eventually) save the user (no queries yet)
+           $entityManager->persist($user);
+           // actually executes the queries (i.e. the INSERT query)
+           $entityManager->persist($user2);
+           // actually executes the queries (i.e. the INSERT query)
+           $entityManager->persist($user3);
+           
+           $entityManager->flush();
+
+           $users = $this->getDoctrine()
+           ->getRepository(User::class)
+           ->findAll();
+           dump($users);
+
+
         $data =[
 'one',
 'two',

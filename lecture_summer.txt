@@ -9,5 +9,13 @@ To create SQLite Database user
 CMD:bin/console doctrine:database:create
 
 This command will create a data.db is between var folder.
+For creating Entity
+
+CMD:bin/console make:entity
+
+Then need to create migration 
+CMD : bin/console make:migration
+Then CMD : bin/console doctrine:migrations:migrate
+
 
 </p>

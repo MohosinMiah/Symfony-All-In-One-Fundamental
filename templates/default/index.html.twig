@@ -12,20 +12,8 @@
 More Details : https://twig.symfony.com/doc/2.x/templates.html#filters
 
 <br>
-Path : {{path('default')}}
-<br>
-URL : {{url('default')}}
-<br>
-Assets : {{asset('images/ii.jpg')}}
-<br>
-Absolute Assets : {{absolute_url(asset('images/ii.jpg'))}}
-<ul>
-  <h1>Display Error Message</h1>
-  {% for message in app.flashes('success') %}
-    <div class="flash-notice">
-        {{ message }}
-    </div>
-{% endfor %}
+Display Golbal Variable From : config/package/twig.yaml  : <br>
+{{go_code}}
 </div>
 
 

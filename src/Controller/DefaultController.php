@@ -16,9 +16,9 @@ class DefaultController extends AbstractController
 {
 
 
-     public function __construct(MyFriends $myFriends)
+     public function __construct(MyFriends $myFriends,$logger)
      {
-      
+      $logger->info("fee");
         $myFriends->friends = ["Change_from_controller_one"];
      }
      
@@ -95,9 +95,7 @@ class DefaultController extends AbstractController
            $users = $this->getDoctrine()
            ->getRepository(User::class)
            ->findAll();
-     if($users){
-         throw $this->createNotFoundException("User Available ");
-     }
+    
 
         $data =[
 'one',

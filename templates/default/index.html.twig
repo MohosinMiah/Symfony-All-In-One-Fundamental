@@ -10,21 +10,15 @@
 
 <div class="example-wrapper">
 More Details : https://twig.symfony.com/doc/2.x/templates.html#filters
-{% for i in range(low=1, high=10, step=2) %}
-    {{ i }},<h1>✅😃 </h1>
-{% endfor %}
-    {% apply upper %}
-    This text becomes uppercase
-{% endapply %}
 
-{% if 'Fabien' starts with 'F' %}
-<h1>Strats With F</h1>
-{% endif %}
-
-
-{% autoescape 'js' %}
-    Everything will be automatically escaped in this block (using the JS strategy)
-{% endautoescape %}
+<br>
+Path : {{path('default')}}
+<br>
+URL : {{url('default')}}
+<br>
+Assets : {{asset('images/ii.jpg')}}
+<br>
+Absolute Assets : {{absolute_url(asset('images/ii.jpg'))}}
 <ul>
   <h1>Display Error Message</h1>
   {% for message in app.flashes('success') %}

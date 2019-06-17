@@ -95,7 +95,9 @@ class DefaultController extends AbstractController
            $users = $this->getDoctrine()
            ->getRepository(User::class)
            ->findAll();
-
+     if($users){
+         throw $this->createNotFoundException("User Available ");
+     }
 
         $data =[
 'one',

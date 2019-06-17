@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class DefaultController extends AbstractController
 {
@@ -21,6 +22,84 @@ class DefaultController extends AbstractController
       $logger->info("fee");
         $myFriends->friends = ["Change_from_controller_one"];
      }
+
+
+ /**
+     * @Route("/forward_method/{name}", name="forward_method")
+ */
+
+public function forward_method($name)
+{
+    $response = $this->forward('App\Controller\DefaultController::fancy', [
+        'name'  => $name,
+        'color' =>'Green'
+    ]);
+    return $response;
+}
+
+
+ /**
+     * @Route("/fanc/{name}/{color}", name="fancy")
+ */
+
+public function fancy($name,$color)
+{
+    exit("I am from frowarding method Name ".$name." Color " .$color);
+
+}
+
+
+
+
+
+ /**
+     * @Route("/generate_url/{id<\d+>?1}", name="generate_url")
+ */
+public function generate_url($id)
+{
+    dump($this->generateUrl('generate_url',array('id'=> $id)));
+ exit($this->generateUrl('generate_url',array('id'=> $id), UrlGeneratorInterface::ABSOLUTE_URL));
+}
+
+
+ /**
+     * @Route("/download/", name="download")
+ */
+public function download()
+{
+/**
+ * First   way
+ */
+//    $path = $this->getParameter('download_dir');
+//    return $this->file($path.'/check.php');
+
+/**
+ * Second  way
+ */
+$path = $this->get('kernel')->getRootDir(). "../public/"; 
+$file = $path.'check.php'; // Path to the file on the server
+$response = new BinaryFileResponse($file);
+// Give the file a name:
+$response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT,'my_file_name.php');
+return $response;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
      
 
  /**

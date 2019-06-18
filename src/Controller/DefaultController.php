@@ -23,6 +23,24 @@ class DefaultController extends AbstractController
         $myFriends->friends = ["Change_from_controller_one"];
      }
 
+         
+
+/**
+ * @Route("/raw_sql", name="raw_sql")
+ */
+public function raw_sql()
+{
+    $em = $this->getDoctrine()->getManager();
+   $conn = $em->getConnection();
+   $sql = "SELECT * FROM User";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+     dump($stmt->fetchAll());
+     exit();
+
+    return $this->redirectToRoute('create');
+}
+
 /**
  * @Route("/delete/{id}", name="delete")
  */

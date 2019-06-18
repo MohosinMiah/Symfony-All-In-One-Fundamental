@@ -24,6 +24,63 @@ class DefaultController extends AbstractController
      }
 
 
+  
+
+ /**
+     * @Route("/create", name="create")
+ */
+
+public function create()
+{
+
+    $entityManager = $this->getDoctrine()->getManager();
+
+
+    //  $user = new User;
+
+    //     $user->setName("Md.Mohosin Miah");
+
+    //     $user2 = new User;
+
+
+    //     $user2->setName("Md.Rayhan Miah");
+    //     $user3 = new User;
+
+    //     $user3->setName("Md.Forhad Miah");
+    //        // tell Doctrine you want to (eventually) save the user (no queries yet)
+    //        $entityManager->persist($user);
+    //        // actually executes the queries (i.e. the INSERT query)
+    //        $entityManager->persist($user2);
+    //        // actually executes the queries (i.e. the INSERT query)
+    //        $entityManager->persist($user3);
+           
+    //        $entityManager->flush();
+
+        $users = $this->getDoctrine()
+        ->getRepository(User::class)
+        ->findAll();
+
+        return $this->render('default/index.html.twig', [
+            'users' =>$users,
+           
+        ]);
+ 
+}
+
+
+
+//Use this method in view
+
+public function popular_posts($number = 3)
+{
+    $popular_posts = ['Post 1','Post 2','Post 3','Post 4','Post 5'];
+    return $this->render('default/popular_posts.html.twig', [
+        'popular_posts' =>$popular_posts,
+
+        
+    ]);
+}
+
  /**
      * @Route("/forward_method/{name}", name="forward_method")
  */

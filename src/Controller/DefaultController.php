@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class DefaultController extends AbstractController
 {
@@ -24,6 +25,20 @@ class DefaultController extends AbstractController
      }
 
          
+
+/**
+ * @Route("/param_converter/{id}", name="param_converter")
+ * @ParamConverter("id", class="User.php", options={"id": "id"})
+ */
+public function param_converter(User $user)
+{
+     dump($user);
+     die();
+     exit();
+
+    return $this->redirectToRoute('create');
+}
+
 
 /**
  * @Route("/raw_sql", name="raw_sql")

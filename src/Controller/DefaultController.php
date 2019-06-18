@@ -24,6 +24,23 @@ class DefaultController extends AbstractController
      }
 
 /**
+ * @Route("/delete/{id}", name="delete")
+ */
+public function delete($id)
+{
+    $em = $this->getDoctrine()->getManager();
+    // $user = $em->getRepository(User::class)->find($id);
+    $user = $em->getRepository(User::class)->findAll();
+
+    if ($user) {
+        $em->remove($user);
+        $em->flush();
+    }
+
+
+    return $this->redirectToRoute('create');
+}
+/**
  * @Route("/update/{id}", name="update")
  */
   

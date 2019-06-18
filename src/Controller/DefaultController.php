@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
+use App\Entity\Post;
 use App\Services\MyFriends;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,7 +24,38 @@ class DefaultController extends AbstractController
       $logger->info("fee");
         $myFriends->friends = ["Change_from_controller_one"];
      }
+/**
+ * @Route("/add_video", name="add_video")
+ */
+public function add_video()
+{
+    // $em = $this->getDoctrine();
+//    $user = new User();
+// $user->setName("Mohosin");
+// $em->persist($user);
+// $em->flush();
+//    for ($i=0; $i < 5; $i++) { 
+//       $posts = new Post();
+//       $posts->setTitle('Post One');
+//       $user->addPost($posts);
+//       $em->persist($posts);
 
+
+//    }
+//    $em->flush();
+
+    //  dump($em->getRepository(Post::class)->find(1)->getUser()->getName());
+    $posts = $this->getDoctrine()->getRepository(User::class)->find(2);
+    dump($posts);
+
+    foreach($posts->getPosts() as $post){
+        dump($post->getTitle());
+    }
+     die();
+     exit();
+
+    return $this->redirectToRoute('add_video');
+}
          
 
 /**

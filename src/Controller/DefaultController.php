@@ -23,9 +23,26 @@ class DefaultController extends AbstractController
         $myFriends->friends = ["Change_from_controller_one"];
      }
 
-
+/**
+ * @Route("/update/{id}", name="update")
+ */
   
+public function update($id)
+{
+    $em = $this->getDoctrine()->getManager();
+    $product = $em->getRepository(User::class)->find($id);
 
+    if (!$product) {
+        throw $this->createNotFoundException(
+            'No User found for id '.$id
+        );
+    }
+
+    $product->setName('Kamal Pasha');
+    $em->flush();
+
+    return $this->redirectToRoute('create');
+}
  /**
      * @Route("/create", name="create")
  */
@@ -36,25 +53,25 @@ public function create()
     $entityManager = $this->getDoctrine()->getManager();
 
 
-    //  $user = new User;
+     $user = new User;
 
-    //     $user->setName("Md.Mohosin Miah");
+        $user->setName("Md.Mohosin Miah");
 
-    //     $user2 = new User;
+        $user2 = new User;
 
 
-    //     $user2->setName("Md.Rayhan Miah");
-    //     $user3 = new User;
+        $user2->setName("Md.Rayhan Miah");
+        $user3 = new User;
 
-    //     $user3->setName("Md.Forhad Miah");
-    //        // tell Doctrine you want to (eventually) save the user (no queries yet)
-    //        $entityManager->persist($user);
-    //        // actually executes the queries (i.e. the INSERT query)
-    //        $entityManager->persist($user2);
-    //        // actually executes the queries (i.e. the INSERT query)
-    //        $entityManager->persist($user3);
+        $user3->setName("Md.Forhad Miah");
+           // tell Doctrine you want to (eventually) save the user (no queries yet)
+           $entityManager->persist($user);
+           // actually executes the queries (i.e. the INSERT query)
+           $entityManager->persist($user2);
+           // actually executes the queries (i.e. the INSERT query)
+           $entityManager->persist($user3);
            
-    //        $entityManager->flush();
+           $entityManager->flush();
 
         $users = $this->getDoctrine()
         ->getRepository(User::class)

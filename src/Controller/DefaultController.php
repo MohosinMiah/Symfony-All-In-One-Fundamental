@@ -28,6 +28,24 @@ class DefaultController extends AbstractController
 
 
 /**
+ * @Route("/eager_loading", name="eager_loading")
+ */
+public function eager_loading()
+{
+    $em = $this->getDoctrine()->getManager();
+    
+    dump($em->getRepository(User::class)->findwithPosts(1));
+    foreach($em->getRepository(User::class)->findwithPosts(1)->getPosts() as $daa){
+        dump($daa->getTitle());
+    }
+  exit();
+
+    return $this->redirectToRoute('create');
+}
+
+
+
+/**
  * @Route("/user_address", name="user_address")
  */
 public function user_address()

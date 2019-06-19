@@ -24,33 +24,52 @@ class DefaultController extends AbstractController
       $logger->info("fee");
         $myFriends->friends = ["Change_from_controller_one"];
      }
+
+
+/**
+ * @Route("/delete_user/{id}", name="delete_user")
+ */
+public function delete_user($id)
+{
+    $em = $this->getDoctrine()->getManager();
+    $user = $em->getRepository(User::class)->find($id);
+
+    if ($user) {
+        $em->remove($user);
+        $em->flush();
+    }
+  exit();
+
+    return $this->redirectToRoute('create');
+}
+
 /**
  * @Route("/add_video", name="add_video")
  */
 public function add_video()
 {
-    // $em = $this->getDoctrine();
-//    $user = new User();
-// $user->setName("Mohosin");
-// $em->persist($user);
-// $em->flush();
-//    for ($i=0; $i < 5; $i++) { 
-//       $posts = new Post();
-//       $posts->setTitle('Post One');
-//       $user->addPost($posts);
-//       $em->persist($posts);
+    $em = $this->getDoctrine()->getManager();
+   $user = new User();
+$user->setName("Mohosin");
+$em->persist($user);
+$em->flush();
+   for ($i=0; $i < 5; $i++) { 
+      $posts = new Post();
+      $posts->setTitle('Post One');
+      $user->addPost($posts);
+      $em->persist($posts);
 
 
-//    }
-//    $em->flush();
+   }
+   $em->flush();
 
-    //  dump($em->getRepository(Post::class)->find(1)->getUser()->getName());
-    $posts = $this->getDoctrine()->getRepository(User::class)->find(2);
-    dump($posts);
+    //  dump($this->getDoctrine()->getRepository(Post::class)->find(1)->getUser()->getName());
+    // $posts = $this->getDoctrine()->getRepository(User::class)->find(2);
+    // dump($posts);
 
-    foreach($posts->getPosts() as $post){
-        dump($post->getTitle());
-    }
+    // foreach($posts->getPosts() as $post){
+    //     dump($post->getTitle());
+    // }
      die();
      exit();
 

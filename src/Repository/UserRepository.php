@@ -20,6 +20,20 @@ class UserRepository extends ServiceEntityRepository
     }
 
 
+    public function findwithFiles($id): ?User
+    {
+        return $this->createQueryBuilder('u')
+            ->innerJoin('u.files', 'f')
+            ->addSelect('f')
+            ->andWhere('u.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+    
+
+
     public function findwithPosts($id): ?User
     {
         return $this->createQueryBuilder('u')

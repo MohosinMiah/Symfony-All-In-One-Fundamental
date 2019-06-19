@@ -7,7 +7,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
 use App\Entity\Address;
 use App\Entity\Post;
+use App\Entity\Pdf;
+use App\Entity\Word;
+
 use App\Services\MyFriends;
+
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Cookie;
@@ -25,6 +29,53 @@ class DefaultController extends AbstractController
       $logger->info("fee");
         $myFriends->friends = ["Change_from_controller_one"];
      }
+
+     
+/**
+ * @Route("/polimorphic_query", name="polimorphic_query")
+ */
+public function polimorphic_query()
+{
+    $em = $this->getDoctrine()->getManager();
+//       //Save User then Pdf and at last Word File
+//       for ($i=1; $i <4 ; $i++) { 
+//           $user = new User();
+//           $user->setName("User ".$i);
+//           $em->persist($user);
+         
+
+
+//           for ($j=1; $j <7 ; $j++) { 
+//             $pdf = new Pdf();
+//             $pdf->setFileName("PDF ".$j);
+//             $pdf->setSize("Size ".$j);
+//             $pdf->setDescription("Description ".$j);
+//             $pdf->setUser($user);
+//             $em->persist($pdf);
+            
+//         }
+
+//         for ($k=1; $k <7 ; $k++) { 
+//             $word = new Word();
+//             $word->setFileName("PDF ".$k);
+//             $word->setName("Word ".$k);
+//             $word->setDescription("Description ".$k);
+//             $word->setUser($user);
+//             $em->persist($word);
+            
+//         }
+//   }
+//       $em->flush();
+
+// dump( $em->getRepository(User::class)->find(2)->getFiles());
+dump( $em->getRepository(User::class)->findwithPosts(7));
+dump( $em->getRepository(User::class)->findwithFiles(16));
+
+  return $this->render('default/index.html.twig', [
+  
+   
+]);
+}
 
 
 /**
@@ -83,9 +134,9 @@ public function delete_user($id)
 }
 
 /**
- * @Route("/add_video", name="add_video")
+ * @Route("/add_post", name="add_post")
  */
-public function add_video()
+public function add_post()
 {
     $em = $this->getDoctrine()->getManager();
    $user = new User();
@@ -112,7 +163,7 @@ $em->flush();
      die();
      exit();
 
-    return $this->redirectToRoute('add_video');
+    return $this->redirectToRoute('add_post');
 }
          
 

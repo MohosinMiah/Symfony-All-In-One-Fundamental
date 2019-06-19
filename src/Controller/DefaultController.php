@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
+use App\Entity\Address;
 use App\Entity\Post;
 use App\Services\MyFriends;
 
@@ -24,6 +25,26 @@ class DefaultController extends AbstractController
       $logger->info("fee");
         $myFriends->friends = ["Change_from_controller_one"];
      }
+
+
+/**
+ * @Route("/user_address", name="user_address")
+ */
+public function user_address()
+{
+    $em = $this->getDoctrine()->getManager();
+    $user = new User();
+    $address = new Address();
+    $user->setName("Md Khalid");
+    $address->setStret("KSA");
+    $user->setAddress($address);
+   $em->persist($user);
+ 
+    $em->flush();
+  exit();
+
+    return $this->redirectToRoute('create');
+}
 
 
 /**

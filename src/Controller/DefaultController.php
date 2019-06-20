@@ -19,13 +19,17 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use App\Services\MySecondService;
 
 class DefaultController extends AbstractController
 {
 
 
-     public function __construct(MyFriends $myFriends,$logger,$param1,$adminEmail)
+     public function __construct(MyFriends $myFriends,$logger,$param1,$adminEmail,MySecondService $mySecondService)
      {
+         var_dump($mySecondService);
+         dump($mySecondService->from);
+      
         dump($param1);
         dump($adminEmail);
         $logger->info("fee");

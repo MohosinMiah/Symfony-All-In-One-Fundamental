@@ -33,5 +33,7 @@ services:
       $logger: '@monolog.logger.doctrine'
      arguments:
         $param1: "Param One"
-        $adminEmail: '%admin_email%'    
+        $adminEmail: '%admin_email%'  
+
+
 

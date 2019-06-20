@@ -27,7 +27,7 @@ class DefaultController extends AbstractController
 
      public function __construct(MyFriends $myFriends,$logger,$param1,$adminEmail,MySecondService $mySecondService)
      {
-         var_dump($mySecondService);
+         dump($mySecondService);
          dump($mySecondService->from);
       
         dump($param1);

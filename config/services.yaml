@@ -6,6 +6,7 @@
 parameters:
     locale: 'en'
     download_dir: '../public'
+    admin_email: manager@example.com
 
 services:
     # default configuration for services in *this* file
@@ -30,5 +31,7 @@ services:
     App\Controller\DefaultController:
      bind:
       $logger: '@monolog.logger.doctrine'
-
+     arguments:
+        $param1: "Param One"
+        $adminEmail: '%admin_email%'    
 

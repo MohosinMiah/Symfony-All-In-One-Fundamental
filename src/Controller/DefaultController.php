@@ -24,9 +24,11 @@ class DefaultController extends AbstractController
 {
 
 
-     public function __construct(MyFriends $myFriends,$logger)
+     public function __construct(MyFriends $myFriends,$logger,$param1,$adminEmail)
      {
-      $logger->info("fee");
+        dump($param1);
+        dump($adminEmail);
+        $logger->info("fee");
         $myFriends->friends = ["Change_from_controller_one"];
      }
 

@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+
 class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -20,7 +22,10 @@ class UserType extends AbstractType
             'label' => ' User Name'
 
         ])
-       
+       ->add('agree',CheckboxType::class,[
+           'label' => "Agree",
+           'mapped' =>false
+       ])
      
         ->add('save',SubmitType::class, [
             'label' => ' Save',
@@ -29,14 +34,16 @@ class UserType extends AbstractType
         ]);
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
             // ... adding the name field if needed
-            $product = $event->getData();
+            $user = $event->getData();
             $form = $event->getForm();
     
             // checks if the Product object is "new"
             // If no data is passed to the form, the data is "null".
             // This should be considered a new "Product"
-            if (!$product || null === $product->getId()) {
-                $form->add('country', TextType::class);
+            if (!$user || null === $user->getId()) {
+                $form->add('country', TextType::class,[
+                    'label'=> "country"
+                ]);
             }
         });
     }

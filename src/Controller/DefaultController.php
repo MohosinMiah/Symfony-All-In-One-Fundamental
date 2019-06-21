@@ -50,58 +50,58 @@ public function form2_example(Request $request,ValidatorInterface $validator)
 {
 
 
-    $entityManager = $this->getDoctrine()->getManager();
+    // $entityManager = $this->getDoctrine()->getManager();
         
-        $user = $entityManager->getRepository(User::class)->find(1);
+    //     $user = $entityManager->getRepository(User::class)->find(1);
 
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())
-        {
-            $entityManager->persist($user);
-            $entityManager->flush();
-            return $this->render('default/index.html.twig', [
-                'form' => $form->createView(),
-            ]);
-        }
+    //     $form = $this->createForm(UserType::class, $user);
+    //     $form->handleRequest($request);
+    //     if ($form->isSubmitted() && $form->isValid())
+    //     {
+    //         $entityManager->persist($user);
+    //         $entityManager->flush();
+    //         return $this->render('default/index.html.twig', [
+    //             'form' => $form->createView(),
+    //         ]);
+    //     }
 
-        return $this->render('default/index.html.twig', [
-            'form' => $form->createView(),
+    //     return $this->render('default/index.html.twig', [
+    //         'form' => $form->createView(),
+    //     ]);
+
+
+  // creates a task and gives it some dummy data for this example
+     $user = new User();
+     $user->setName('Set User Name');
+     $user->setCountry('Set Your Country');
+     $form = $this->createForm(UserType::class,$user);
+     $errors = $validator->validate($user);
+     if (count($errors) > 0) {
+        return $this->render('default/validation.html.twig', [
+            'errors' => $errors,
         ]);
+    }
+         $form->handleRequest($request);
 
-
-// //      // creates a task and gives it some dummy data for this example
-//      $user = new User();
-//      $user->setName('Write User Name');
-//      $user->setCountry('Set Your Country');
-//      $form = $this->createForm(UserType::class,$user);
-//      $errors = $validator->validate($user);
-//      if (count($errors) > 0) {
-//         return $this->render('default/validation.html.twig', [
-//             'errors' => $errors,
-//         ]);
-//     }
-//          $form->handleRequest($request);
-
-//          if ($form->isSubmitted() && $form->isValid()) {
-//             //  $form->getData() holds the submitted values
-//              // but, the original `$task` variable has also been updated
-//              $user = $form->getData();
+         if ($form->isSubmitted() && $form->isValid()) {
+            //  $form->getData() holds the submitted values
+             // but, the original `$task` variable has also been updated
+             $user = $form->getData();
     
-//              // ... perform some action, such as saving the task to the database
-//              // for example, if Task is a Doctrine entity, save it!
-//              $entityManager = $this->getDoctrine()->getManager();
-//              $entityManager->persist($user);
-//              $entityManager->flush();
+             // ... perform some action, such as saving the task to the database
+             // for example, if Task is a Doctrine entity, save it!
+             $entityManager = $this->getDoctrine()->getManager();
+             $entityManager->persist($user);
+             $entityManager->flush();
     
-//      return $this->render('default/index.html.twig', [
-//          'form' => $form->createView(),
-//      ]);
-//  }
+     return $this->render('default/index.html.twig', [
+         'form' => $form->createView(),
+     ]);
+ }
 
-//  return $this->render('default/index.html.twig', [
-//     'form' => $form->createView(),
-// ]);
+ return $this->render('default/index.html.twig', [
+    'form' => $form->createView(),
+]);
 
 
 }

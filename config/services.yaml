@@ -7,6 +7,7 @@ parameters:
     locale: 'en'
     download_dir: '../public'
     admin_email: manager@example.com
+    file_directory: '%kernel.project_dir%/public/uploads/file_storage'
 
 services:
     # default configuration for services in *this* file

@@ -52,6 +52,14 @@ class User
      */
     private $country;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\File(mimeTypes={ "application/pdf" ,"image/jpeg"  })
+     */
+    private $fileupload;
+
+   
+
    
     public function __construct()
     {
@@ -161,6 +169,20 @@ class User
 
         return $this;
     }
+
+    public function getFileupload(): ?string
+    {
+        return $this->fileupload;
+    }
+
+    public function setFileupload(string $fileupload): self
+    {
+        $this->fileupload = $fileupload;
+
+        return $this;
+    }
+
+ 
 
    
 }

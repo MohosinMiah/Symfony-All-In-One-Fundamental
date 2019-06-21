@@ -17,6 +17,10 @@
         {{ form_widget(form.name) }}
         {{ form_errors(form.name) }}
     </div>
+    <div>
+        {{ form_widget(form.fileupload) }}
+        {{ form_errors(form.fileupload) }}
+    </div>
     {% if form.country is defined %}
     <div>
         {{ form_widget(form.country) }}

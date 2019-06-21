@@ -46,6 +46,12 @@ class User
      */
     private $files;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     */
+    private $country;
+
    
     public function __construct()
     {
@@ -140,6 +146,18 @@ class User
                 $file->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(string $country): self
+    {
+        $this->country = $country;
 
         return $this;
     }

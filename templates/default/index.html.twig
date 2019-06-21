@@ -12,12 +12,18 @@
 {{ form_start(form) }}
 
     <div>
+    </div>
+    <div>
         {{ form_widget(form.name) }}
         {{ form_errors(form.name) }}
     </div>
+    {% if form.country is defined %}
+    <div>
+        {{ form_widget(form.country) }}
+        {{ form_errors(form.country) }}
+    </div>
+    {% endif %}
     
-    
-    <input type="submit" value="Submit">
     
 {{ form_end(form) }}
 <br>

@@ -38,6 +38,7 @@ class User
      */
     private $files;
 
+   
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -134,4 +135,6 @@ class User
 
         return $this;
     }
+
+   
 }

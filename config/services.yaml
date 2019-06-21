@@ -36,8 +36,8 @@ services:
         $param1: "Param One"
         $adminEmail: '%admin_email%'  
 
-    App\EventListener\ExceptionListener:
-      tags:
-        - { name: kernel.event_listener, event: kernel.response  }
+    # App\EventListener\ExceptionListener:
+    #   tags:
+    #     - { name: kernel.event_listener, event: kernel.response  }
 
     

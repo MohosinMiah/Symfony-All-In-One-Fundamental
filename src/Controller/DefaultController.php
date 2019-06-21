@@ -20,6 +20,11 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Services\MySecondService;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\Request;
+use App\Form\UserType;
 
 class DefaultController extends AbstractController
 {
@@ -35,7 +40,75 @@ class DefaultController extends AbstractController
         $logger->info("fee");
         $myFriends->friends = ["Change_from_controller_one"];
      }
+     /**
+ * @Route("/form2_example", name="form2_example")
+ */
+public function form2_example(Request $request)
+{
+//      // creates a task and gives it some dummy data for this example
+     $user = new User();
+     $user->setName('Write User Name');
+     $form = $this->createForm(UserType::class,$user);
+     
+         $form->handleRequest($request);
 
+         if ($form->isSubmitted() && $form->isValid()) {
+            //  $form->getData() holds the submitted values
+             // but, the original `$task` variable has also been updated
+             $user = $form->getData();
+    
+             // ... perform some action, such as saving the task to the database
+             // for example, if Task is a Doctrine entity, save it!
+             $entityManager = $this->getDoctrine()->getManager();
+             $entityManager->persist($user);
+             $entityManager->flush();
+    
+     return $this->render('default/index.html.twig', [
+         'form' => $form->createView(),
+     ]);
+ }
+ return $this->render('default/index.html.twig', [
+    'form' => $form->createView(),
+]);
+
+
+}
+
+     /**
+ * @Route("/form_example", name="form_example")
+ */
+     public function form_example(Request $request)
+     {
+         // creates a task and gives it some dummy data for this example
+         $user = new User();
+         $user->setName('Write User Name');
+         $form = $this->createFormBuilder($user)
+         ->add('name', TextType::class)
+         ->add('save', SubmitType::class, ['label' => 'Create Task'])
+             ->getForm();
+             $form->handleRequest($request);
+
+             if ($form->isSubmitted() && $form->isValid()) {
+                //  $form->getData() holds the submitted values
+                 // but, the original `$task` variable has also been updated
+                 $user = $form->getData();
+         
+                 // ... perform some action, such as saving the task to the database
+                 // for example, if Task is a Doctrine entity, save it!
+                 $entityManager = $this->getDoctrine()->getManager();
+                 $entityManager->persist($user);
+                 $entityManager->flush();
+         
+         return $this->render('default/index.html.twig', [
+             'form' => $form->createView(),
+         ]);
+     }
+     return $this->render('default/index.html.twig', [
+        'form' => $form->createView(),
+    ]);
+
+    
+     }
      
 /**
  * @Route("/polimorphic_query", name="polimorphic_query")

@@ -12,7 +12,7 @@ use App\Entity\Word;
 
 use App\Services\MyFriends;
 
-
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,13 +43,18 @@ class DefaultController extends AbstractController
      /**
  * @Route("/form2_example", name="form2_example")
  */
-public function form2_example(Request $request)
+public function form2_example(Request $request,ValidatorInterface $validator)
 {
 //      // creates a task and gives it some dummy data for this example
      $user = new User();
      $user->setName('Write User Name');
      $form = $this->createForm(UserType::class,$user);
-     
+     $errors = $validator->validate($user);
+     if (count($errors) > 0) {
+        return $this->render('default/validation.html.twig', [
+            'errors' => $errors,
+        ]);
+    }
          $form->handleRequest($request);
 
          if ($form->isSubmitted() && $form->isValid()) {
